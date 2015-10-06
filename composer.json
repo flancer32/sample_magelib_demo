@@ -1,0 +1,30 @@
+{
+  "name": "flancer32/sample_magelib_demo",
+  "description": "Magento 2 module sample (with development environment).",
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://github.com/flancer32/sample_magelib_demo",
+  "authors": [
+    {
+      "name": "Alex Gusev",
+      "email": "alex@flancer64.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Flancer32\\Lib\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Flancer32\\Lib\\": "test/"
+    }
+  }
+}
