@@ -11,12 +11,11 @@
 namespace Flancer32\Lib\Service\Customer;
 
 
-class Call_UnitTest extends \PHPUnit_Framework_TestCase {
+class Call_DvlpTest extends \PHPUnit_Framework_TestCase {
 
     public function test_operation() {
         $call = new Call();
-        $resp = $call->operation(2);
-        $this->assertEquals(4, $resp, "A-a-a-a!!! Sum operation is broken on this platform!");
+        $resp = $call->dbInsert(array());
+        $this->assertNotNull($resp);
     }
-
 }
