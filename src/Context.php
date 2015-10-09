@@ -20,6 +20,8 @@ class Context {
     const TYPE_MAGE_2 = 'M2';
     const TYPE_TEST = 'TEST_UNIT';
     private $_contextType = self::TYPE_TEST;
+    /** @var string TODO: remove this tmp code */
+    private $_dbPrefix = 'm1';
     /**
      * @var \Zend_Db_Adapter_Pdo_Mysql
      */
@@ -38,10 +40,12 @@ class Context {
      */
     public function __construct() {
         /* analyze current runtime environment Magento 1 | Magento 2 | TestUnits (default) */
-        if(class_exists('Mage')) {
+        if(class_exists('Mage', false)) {
             $this->_contextType = self::TYPE_MAGE_1;
-        } elseif(false) {
-            /* TODO: change condition for M2 context */
+        } elseif(
+            isset($GLOBALS['bootstrap']) &&
+            ($GLOBALS['bootstrap'] instanceof \Magento\Framework\App\Bootstrap)
+        ) {
             $this->_contextType = self::TYPE_MAGE_2;
         }
     }
@@ -75,6 +79,14 @@ class Context {
         if(!$this->_connection instanceof \Zend_Db_Adapter_Abstract) {
             if($this->_contextType == self::TYPE_MAGE_1) {
                 $this->_connection = \Mage::getSingleton('core/resource')->getConnection('core_write');
+            } elseif($this->_contextType == self::TYPE_MAGE_2) {
+                /** @var  $bootstrap \Magento\Framework\App\Bootstrap */
+                $bootstrap = $GLOBALS['bootstrap'];
+                $object_manager = $bootstrap->getObjectManager();
+                /** @var  $appRsrc \Magento\Framework\App\Resource */
+                $appRsrc = $object_manager->get('\Magento\Framework\App\Resource');
+                $this->_connection = $appRsrc->getConnection('core_write');
+                $this->_dbPrefix = '';
             } else {
                 throw new \Exception('Database connection is not set in the context. You should setup connection manually in PHPUnit tests.');
             }
@@ -90,7 +102,7 @@ class Context {
      * @return string
      */
     public function getTableName($entityName) {
-        $result = 'm1_' . $entityName;
+        $result = $this->_dbPrefix . $entityName;
         return $result;
     }
 }
