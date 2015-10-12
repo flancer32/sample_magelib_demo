@@ -21,7 +21,7 @@ class Context {
     const TYPE_TEST = 'TEST_UNIT';
     private $_contextType = self::TYPE_TEST;
     /** @var string TODO: remove this tmp code */
-    private $_dbPrefix = 'm1';
+    private $_dbPrefix = 'm1_';
     /**
      * @var \Zend_Db_Adapter_Pdo_Mysql
      */
