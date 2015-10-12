@@ -12,6 +12,14 @@ use Flancer32\Lib\Entity\Bonus\Type as BonuseType;
  * User: Alex Gusev <alex@flancer64.com>
  */
 class Call {
+
+    /**
+     * Sample method to call from M1 & M2 modules.
+     *
+     * @param $request
+     *
+     * @return mixed
+     */
     public function operation($request) {
         $result = $request + 2;
         return $result;
