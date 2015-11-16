@@ -1,16 +1,12 @@
 <?php
 /**
- * Copyright (c) 2015, Praxigento
- * All rights reserved.
+ * User: Alex Gusev <alex@flancer64.com>
  */
 namespace Flancer32\Lib\Service\Customer;
 
 use Flancer32\Lib\Context;
 use Flancer32\Lib\Entity\Bonus\Type as BonuseType;
 
-/**
- * User: Alex Gusev <alex@flancer64.com>
- */
 class Call {
 
     /** @var  \Magento_Db_Adapter_Pdo_Mysql|\Magento\Framework\DB\Adapter\Pdo\Mysql */
