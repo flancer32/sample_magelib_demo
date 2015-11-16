@@ -26,7 +26,7 @@ class Call {
     }
 
     public function dbInsert($request) {
-        $ctx = Context::get();
+        $ctx = Context::instance();
         /** @var  $conn \Zend_Db_Adapter_Pdo_Mysql */
         $conn = $ctx->getConnection();
         $tbl = $ctx->getTableName(BonuseType::NAME);
@@ -36,7 +36,7 @@ class Call {
     }
 
     public function dbUpdate($id, $bind) {
-        $ctx = Context::get();
+        $ctx = Context::instance();
         /** @var  $conn \Zend_Db_Adapter_Pdo_Mysql */
         $conn = $ctx->getConnection();
         $tbl = $ctx->getTableName(BonuseType::NAME);
@@ -48,7 +48,7 @@ class Call {
 
     public function dbSelect($byId) {
         $result = null;
-        $ctx = Context::get();
+        $ctx = Context::instance();
         /** @var  $conn \Zend_Db_Adapter_Pdo_Mysql */
         $conn = $ctx->getConnection();
         $tbl = $ctx->getTableName(BonuseType::NAME);
@@ -57,7 +57,7 @@ class Call {
         $query->from($tbl, $cols);
         $query->where(BonuseType::ATTR_ID . '=:id');
         $sql = (string)$query;
-        $data = $conn->fetchRow($query, array( 'id' => $byId ));
+        $data = $conn->fetchRow($query, [ 'id' => $byId ]);
         if($data) {
             $result = $data;
         }
@@ -65,7 +65,7 @@ class Call {
     }
 
     public function dbDelete($byId) {
-        $ctx = Context::get();
+        $ctx = Context::instance();
         /** @var  $conn \Zend_Db_Adapter_Pdo_Mysql */
         $conn = $ctx->getConnection();
         $tbl = $ctx->getTableName(BonuseType::NAME);

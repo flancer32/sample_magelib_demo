@@ -1,12 +1,13 @@
 # Execution context
 
 Library can be used in 3 context:
+
 * Magento 1
 * Magento 2
 * PHPUnits
 
 There is [context](../src/Context.php) 
-class that provides access to application resources (DB, registry, etc.) in runtime:
+class that provides access to the application ObjectManager in runtime:
  
     /** @var  $conn Zend_Db_Adapter_Pdo_Mysql */
     $conn = Context::get()->getConnection();
