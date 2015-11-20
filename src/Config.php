@@ -8,7 +8,7 @@ namespace Flancer32\Lib;
  * Hardcoded configuration for Praxigento modules.
  */
 class Config {
-    /** see \Magento\Framework\App\Resource::DEFAULT_..._RESOURCE */
-    const DEFAULT_READ_RESOURCE = 'core_read';
-    const DEFAULT_WRITE_RESOURCE = 'core_write';
+    /** see \Magento\Framework\App\ResourceConnection::DEFAULT_CONNECTION */
+    const DEFAULT_READ_RESOURCE = 'default';
+    const DEFAULT_WRITE_RESOURCE = 'default';
 }

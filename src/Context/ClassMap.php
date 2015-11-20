@@ -13,7 +13,7 @@ class ClassMap {
 
     private static $_tmpMap = [
         'Magento\Framework\Stdlib\DateTime\DateTime' => 'Mage_Core_Model_Date',
-        'Magento\Framework\App\Resource'             => 'Mage_Core_Model_Resource',
+        'Magento\Framework\App\ResourceConnection'             => 'Mage_Core_Model_Resource',
         'Magento\Framework\DB\Adapter\Pdo\Mysql'     => 'Magento_Db_Adapter_Pdo_Mysql'
     ];
 

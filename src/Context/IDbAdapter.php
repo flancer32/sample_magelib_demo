@@ -17,7 +17,7 @@ interface IDbAdapter {
     public function getDefaultConnection();
 
     /**
-     * @return  \Mage_Core_Model_Resource|\Magento\Framework\App\Resource
+     * @return  \Mage_Core_Model_Resource|\Magento\Framework\App\ResourceConnection
      */
     public function getResource();
 }

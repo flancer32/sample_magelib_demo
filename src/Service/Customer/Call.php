@@ -11,7 +11,7 @@ class Call {
 
     /** @var  \Magento_Db_Adapter_Pdo_Mysql|\Magento\Framework\DB\Adapter\Pdo\Mysql */
     protected $_conn;
-    /** @var \Mage_Core_Model_Resource|\Magento\Framework\App\Resource */
+    /** @var \Mage_Core_Model_Resource|\Magento\Framework\App\ResourceConnection */
     protected $_resource;
 
     /**
