@@ -6,6 +6,8 @@
  */
 namespace Flancer32\Lib;
 
+use Flancer32\Lib\Context\DbAdapter;
+
 class Context {
     /**
      * Type of the execution environment.
@@ -36,7 +38,7 @@ class Context {
     /**
      * Context constructor.
      *
-     * @param \Zend_Db_Adapter_Pdo_Mysql $_connection
+     * @codeCoverageIgnore
      */
     public function __construct() {
         /* analyze current runtime environment Magento 1 | Magento 2 */
@@ -87,7 +89,7 @@ class Context {
      *
      * @param Context $instance
      */
-    public static function  set(Context $instance) {
+    public static function  set(Context $instance = null) {
         self::$_instance = $instance;
     }
 
@@ -95,7 +97,25 @@ class Context {
      * Reset instance.
      */
     public static function  reset() {
-        self::$_instance = null;
+        self::set();
+    }
+
+    /**
+     * Map M2 classes to M1 classes.
+     *
+     * @param $m2class M2 class name (Magento\Framework\DB\Adapter\Pdo\Mysql)
+     *
+     * @return string mapped M1 class (Magento_Db_Adapter_Pdo_Mysql)
+     */
+    public static function getClassname($m2class) {
+        $result = $m2class;
+        if(!self::instance()->isMage2()) {
+            $m1class = Context\ClassMap::getM1Class($m2class);
+            if(!is_null($m1class)) {
+                $result = $m1class;
+            }
+        }
+        return $result;
     }
 
     /**
@@ -112,7 +132,11 @@ class Context {
     }
 
     /**
-     * @return Context\ObjectManager
+     * Get context specific Object Manager (Zend_Di based for M1 or Magento 2 Object Manager).
+     *
+     * @codeCoverageIgnore
+     *
+     * @return Context\IObjectManager
      */
     public function getObjectManager() {
         if(is_null($this->_objectManager)) {
@@ -120,23 +144,13 @@ class Context {
                 /** \Magento\Framework\ObjectManager\ObjectManager */
                 $this->_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
             } else {
+                /* create Object Manager for M1 and initialize common objects (shared instances) */
                 $this->_objectManager = new Context\ObjectManager();
                 $resource = \Mage::getModel('core/resource');
                 $dbAdapter = new DbAdapter($resource);
-                $this->_objectManager->addSharedInstance($dbAdapter, 'Flancer32\Core\Lib\Context\IDbAdapter');
+                $this->_objectManager->addSharedInstance($dbAdapter, 'Flancer32\Lib\Context\IDbAdapter');
             }
         }
         return $this->_objectManager;
-    }
-
-    public static function getClassname($m2class) {
-        $result = $m2class;
-        if(!self::instance()->isMage2()) {
-            $m1class = Context\ClassMap::getM1Class($m2class);
-            if(!is_null($m1class)) {
-                $result = $m1class;
-            }
-        }
-        return $result;
     }
 }

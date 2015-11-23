@@ -13,7 +13,7 @@ class Call_UnitTest extends \PHPUnit_Framework_TestCase {
             ->getMock();
         $call = new Call($mockDbAdapter);
         $resp = $call->operation(2);
-        $this->assertEquals(4, $resp, "A-a-a-a!!! Sum operation is broken on this platform!");
+        $this->assertEquals(4, $resp);
     }
 
 }

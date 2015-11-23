@@ -30,11 +30,12 @@ interface IObjectManager {
     public function get($type);
 
     /**
-     * Configure object manager
+     * This method is not used cause: Declaration of Zend\Di\Di::configure() must be compatible with
+     * Praxigento\Core\Lib\Context\IObjectManager::configure(array $configuration)
      *
      * @param array $configuration
      *
      * @return void
      */
-//    public function configure(array $configuration);
+    //    public function configure(array $configuration);
 }

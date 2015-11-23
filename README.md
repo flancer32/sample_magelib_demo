@@ -1,19 +1,12 @@
 # sample_magelib_demo
 
-Common library for Magento 1 and Magento 2 modules.
+Example of the common library for Magento 1 and Magento 2 applications.
 
-## Usage 
-
-
-## Development Installation
-
-    $ git clone git@github.com:flancer32/sample_magelib_demo.git
-    $ composer install
-    
+## Overview
+ 
+This module contains code samples that can be used in Magento 1 and Magento 2 applications.
 
 
-## Run Tests
 
-    $ ./vendor/bin/phpunit ./test/
 
     

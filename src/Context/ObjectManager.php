@@ -31,6 +31,9 @@ class ObjectManager extends \Zend\Di\Di implements Context\IObjectManager {
 
     public function create($type, array $arguments = [ ]) {
         $m1Type = Context::getClassname($type);
+        if($m1Type[0] == '\\') {
+            $m1Type = substr($m1Type, 1, strlen($m1Type) - 1);
+        }
         $result = $this->newInstance($m1Type, $arguments, $isShared = false);
         return $result;
     }

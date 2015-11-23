@@ -15,6 +15,6 @@ class ObjectManager_FunctionalTest extends \PHPUnit_Framework_TestCase {
         $ctx = Context::instance();
         $obm = $ctx->getObjectManager();
         $this->assertNotNull($obm);
-        $this->assertTrue($obm instanceof \Magento\Framework\ObjectManagerInterface);
+        $this->assertTrue($obm instanceof \Flancer32\Lib\Context\IObjectManager);
     }
 }
